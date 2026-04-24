@@ -4,88 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BECO STUDIO | Digitalització Local</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #030305;
-            --accent: #0077ff; /* Blau Neó */
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
+            --accent: #0077ff; /* Blau Neó principal */
+            --accent-glow: rgba(0, 119, 255, 0.3);
+            --text-main: #fff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.06);
         }
 
         body {
             background-color: var(--bg);
-            color: #fff;
+            color: var(--text-main);
             font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* Efecte Aura Neó */
+        /* Efecte Aura Neó de fons */
         .aura {
             position: fixed;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(0, 119, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(80px);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(100px);
             z-index: -1;
-            top: -10%;
+            top: -20%;
             left: 50%;
             transform: translateX(-50%);
+            opacity: 0.8;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 650px;
             width: 90%;
-            padding-top: 80px;
-            padding-bottom: 50px;
+            padding-top: 60px;
+            padding-bottom: 60px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+        /* --- NOU LOGO GRÀFIC BS --- */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin-bottom: 40px;
-            color: var(--accent);
-            text-transform: uppercase;
+            text-decoration: none; /* Per si hi posem enllaç */
         }
+
+        .logo-graphic {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--accent);
+            border-radius: 50%; /* Cercle exterior */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: 0.3s ease;
+        }
+
+        /* Hover effect pel logo */
+        .logo-container:hover .logo-graphic {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--accent);
+        }
+
+        .logo-letters {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -2px; /* Entrellacem una mica les lletres */
+            position: relative;
+            top: -1px; /* Ajust fi */
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin: 0;
+            opacity: 0.8;
+        }
+        /* --- FI NOU LOGO --- */
 
         h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin: 0;
             line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
         .pitch {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.7);
+            font-size: 1.25rem;
+            color: var(--text-muted);
             margin-top: 15px;
             margin-bottom: 40px;
+            line-height: 1.5;
+            max-width: 500px;
         }
 
         .cta-main {
             background: #fff;
             color: #000;
-            padding: 15px 35px;
+            padding: 16px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            transition: 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s ease;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
         }
 
         .cta-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255,255,255,0.2);
         }
 
         .services {
             margin-top: 60px;
             text-align: left;
+            width: 100%;
         }
 
         .card {
@@ -94,40 +150,52 @@
             border-radius: 16px;
             padding: 24px;
             margin-bottom: 16px;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
         .card:hover {
             border-color: var(--accent);
-            background: rgba(0, 119, 255, 0.05);
+            background: rgba(0, 119, 255, 0.04);
+            transform: translateX(5px);
         }
 
-        .card h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .card-icon {
+            font-size: 1.5rem;
+            margin-top: 2px;
         }
 
-        .card p {
+        .card-content h3 {
+            margin: 0 0 6px 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .card-content p {
             margin: 0;
-            color: rgba(255,255,255,0.6);
+            color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 60px;
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.3);
+            color: var(--text-muted);
             letter-spacing: 1px;
+            opacity: 0.6;
         }
 
         /* Adaptació mòbil */
         @media (max-width: 480px) {
-            h1 { font-size: 2.2rem; }
+            h1 { font-size: 2.4rem; }
+            .pitch { font-size: 1.1rem; }
+            .logo-graphic { width: 50px; height: 50px; }
+            .logo-letters { font-size: 28px; }
         }
     </style>
 </head>
@@ -136,8 +204,13 @@
     <div class="aura"></div>
 
     <div class="container">
-        <div class="logo">BECO STUDIO</div>
         
+        <div class="logo-container">
+            <div class="logo-graphic">
+                <span class="logo-letters">BS</span>
+            </div>
+            <p class="logo-text">BECO STUDIO</p>
+        </div>
         <h1>Connecta el teu local al món.</h1>
         <p class="pitch">Digitalització estratègica per a negocis que volen actualitzar-se i vendre més.</p>
         
@@ -145,23 +218,35 @@
 
         <div class="services">
             <div class="card">
-                <h3>📱 Menús QR Dinàmics</h3>
-                <p>Cartes digitals que pots actualitzar al moment sense tornar a imprimir.</p>
+                <div class="card-icon">📱</div>
+                <div class="card-content">
+                    <h3>Menús QR Dinàmics</h3>
+                    <p>Cartes digitals que pots actualitzar al moment sense tornar a imprimir.</p>
+                </div>
             </div>
             
             <div class="card">
-                <h3>📍 Optimització Google Maps</h3>
-                <p>Fes que el teu negoci sigui el primer que trobin els turistes i veïns.</p>
+                <div class="card-icon">📍</div>
+                <div class="card-content">
+                    <h3>Optimització Google Maps</h3>
+                    <p>Fes que el teu negoci sigui el primer que trobin els turistes i veïns.</p>
+                </div>
             </div>
 
             <div class="card">
-                <h3>🌐 Webs per a Negocis</h3>
-                <p>Presència professional d'alt impacte per a serveis i comerços locals.</p>
+                <div class="card-icon">🌐</div>
+                <div class="card-content">
+                    <h3>Webs per a Negocis</h3>
+                    <p>Presència professional d'alt impacte per a serveis i comerços locals.</p>
+                </div>
             </div>
 
             <div class="card">
-                <h3>🚀 E-commerce & Partnership</h3>
-                <p>Creem la teva botiga online i gestionem les vendes a comissió.</p>
+                <div class="card-icon">🚀</div>
+                <div class="card-content">
+                    <h3>E-commerce & Partnership</h3>
+                    <p>Creem la teva botiga online i gestionem les vendes a comissió.</p>
+                </div>
             </div>
         </div>
 
