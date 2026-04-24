@@ -1,257 +1,243 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BECO STUDIO | Digitalització Local</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #030305;
-            --accent: #0077ff; /* Blau Neó principal */
-            --accent-glow: rgba(0, 119, 255, 0.3);
-            --text-main: #fff;
-            --text-muted: rgba(255, 255, 255, 0.6);
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.06);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BECO STUDIO | DIGITALITZACIÓ LOCAL</title>
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-        /* Efecte Aura Neó de fons */
-        .aura {
-            position: fixed;
-            width: 80vw;
-            height: 80vw;
-            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(100px);
-            z-index: -1;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0.8;
-        }
+<style>
+:root {
+    --bg: #020307;
+    --accent: #00a2ff;
+    --accent-strong: #0077ff;
+    --text-main: #ffffff;
+    --text-muted: rgba(255,255,255,0.6);
+    --border: rgba(255,255,255,0.08);
+}
 
-        .container {
-            max-width: 650px;
-            width: 90%;
-            padding-top: 60px;
-            padding-bottom: 60px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* --- NOU LOGO GRÀFIC BS --- */
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 40px;
-            text-decoration: none; /* Per si hi posem enllaç */
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
 
-        .logo-graphic {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--accent);
-            border-radius: 50%; /* Cercle exterior */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            box-shadow: 0 0 15px var(--accent-glow);
-            transition: 0.3s ease;
-        }
+/* 🔵 FONS NEÓ DINÀMIC */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, #0077ff33, transparent 40%),
+                radial-gradient(circle at 70% 60%, #00a2ff22, transparent 50%);
+    animation: moveBg 12s linear infinite;
+    z-index: -2;
+}
 
-        /* Hover effect pel logo */
-        .logo-container:hover .logo-graphic {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px var(--accent);
-        }
+@keyframes moveBg {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-10%, -10%); }
+    100% { transform: translate(0,0); }
+}
 
-        .logo-letters {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: -2px; /* Entrellacem una mica les lletres */
-            position: relative;
-            top: -1px; /* Ajust fi */
-            text-shadow: 0 0 10px var(--accent);
-        }
+/* AURA CENTRAL */
+.aura {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,119,255,0.4), transparent 70%);
+    filter: blur(120px);
+    z-index: -1;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-        .logo-text {
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            color: var(--text-main);
-            text-transform: uppercase;
-            margin: 0;
-            opacity: 0.8;
-        }
-        /* --- FI NOU LOGO --- */
+/* LAYOUT */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 80px 20px;
+    text-align: center;
+}
 
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            line-height: 1.1;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
+/* HERO */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
 
-        .pitch {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-top: 15px;
-            margin-bottom: 40px;
-            line-height: 1.5;
-            max-width: 500px;
-        }
+.pitch {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-inline: auto;
+}
 
-        .cta-main {
-            background: #fff;
-            color: #000;
-            padding: 16px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
-        }
+/* CTA */
+.cta-main {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
-        .cta-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(255,255,255,0.2);
-        }
+    background: linear-gradient(90deg, #0077ff, #00a2ff);
+    color: white;
 
-        .services {
-            margin-top: 60px;
-            text-align: left;
-            width: 100%;
-        }
+    box-shadow: 0 0 20px rgba(0,119,255,0.4);
+    transition: 0.3s;
+}
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
+.cta-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px rgba(0,119,255,0.7);
+}
 
-        .card:hover {
-            border-color: var(--accent);
-            background: rgba(0, 119, 255, 0.04);
-            transform: translateX(5px);
-        }
+/* SECCIÓ SERVEIS */
+.services {
+    margin-top: 80px;
+    text-align: left;
+}
 
-        .card-icon {
-            font-size: 1.5rem;
-            margin-top: 2px;
-        }
+.section-title {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
 
-        .card-content h3 {
-            margin: 0 0 6px 0;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
+/* CARDS */
+.card {
+    display: flex;
+    gap: 15px;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 16px;
 
-        .card-content p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
 
-        footer {
-            margin-top: 60px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            opacity: 0.6;
-        }
+    transition: 0.3s;
+}
 
-        /* Adaptació mòbil */
-        @media (max-width: 480px) {
-            h1 { font-size: 2.4rem; }
-            .pitch { font-size: 1.1rem; }
-            .logo-graphic { width: 50px; height: 50px; }
-            .logo-letters { font-size: 28px; }
-        }
-    </style>
+.card:hover {
+    transform: translateX(6px);
+    border-color: var(--accent);
+    background: rgba(0,119,255,0.05);
+    box-shadow: 0 0 25px rgba(0,119,255,0.15);
+}
+
+.card-icon {
+    font-size: 1.4rem;
+}
+
+.card-content h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* FOOTER */
+footer {
+    margin-top: 80px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .card {
+        flex-direction: column;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="aura"></div>
+<div class="aura"></div>
 
-    <div class="container">
-        
-        <div class="logo-container">
-            <div class="logo-graphic">
-                <span class="logo-letters">BS</span>
-            </div>
-            <p class="logo-text">BECO STUDIO</p>
-        </div>
-        <h1>Connecta el teu local al món.</h1>
-        <p class="pitch">Digitalització estratègica per a negocis que volen actualitzar-se i vendre més.</p>
-        
-        <a href="https://instagram.com/EL_TEU_USUARI" class="cta-main">Contacta per Instagram</a>
+<div class="container">
 
-        <div class="services">
-            <div class="card">
-                <div class="card-icon">📱</div>
-                <div class="card-content">
-                    <h3>Menús QR Dinàmics</h3>
-                    <p>Cartes digitals que pots actualitzar al moment sense tornar a imprimir.</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">📍</div>
-                <div class="card-content">
-                    <h3>Optimització Google Maps</h3>
-                    <p>Fes que el teu negoci sigui el primer que trobin els turistes i veïns.</p>
-                </div>
-            </div>
+    <h1>CONNECTA EL TEU LOCAL AL MÓN</h1>
 
-            <div class="card">
-                <div class="card-icon">🌐</div>
-                <div class="card-content">
-                    <h3>Webs per a Negocis</h3>
-                    <p>Presència professional d'alt impacte per a serveis i comerços locals.</p>
-                </div>
-            </div>
+    <p class="pitch">
+        Digitalització estratègica per negocis que volen créixer, automatitzar i vendre més.
+    </p>
 
-            <div class="card">
-                <div class="card-icon">🚀</div>
-                <div class="card-content">
-                    <h3>E-commerce & Partnership</h3>
-                    <p>Creem la teva botiga online i gestionem les vendes a comissió.</p>
-                </div>
+    <a href="#" class="cta-main">CONTACTA PER INSTAGRAM</a>
+
+    <div class="services">
+        <div class="section-title">SERVEIS</div>
+
+        <div class="card">
+            <div class="card-icon">📱</div>
+            <div class="card-content">
+                <h3>MENÚS QR DINÀMICS</h3>
+                <p>Actualitza la teva carta en temps real sense costos d’impressió.</p>
             </div>
         </div>
 
-        <footer>© 2026 JAN MASQUÉ SALAS | SMX & TECH</footer>
+        <div class="card">
+            <div class="card-icon">📍</div>
+            <div class="card-content">
+                <h3>OPTIMITZACIÓ GOOGLE MAPS</h3>
+                <p>Augmenta visibilitat local i atrau més clients cada dia.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🌐</div>
+            <div class="card-content">
+                <h3>WEBS PER NEGOCIS</h3>
+                <p>Webs modernes amb enfocament en conversió i impacte visual.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <div class="card-content">
+                <h3>E-COMMERCE & PARTNERSHIP</h3>
+                <p>Llança la teva botiga online i escala vendes amb nosaltres.</p>
+            </div>
+        </div>
+
     </div>
+
+    <footer>© 2026 BECO STUDIO</footer>
+
+</div>
 
 </body>
 </html>
