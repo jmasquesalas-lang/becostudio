@@ -3,140 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EL CASAL DE MOIÀ | BY BECO STUDIO</title>
+<title>EL CASAL DE MOIÀ | CARTA DIGITAL</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg: #05070a;
-    --accent: #00a2ff;
-    --glass: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.08);
-    --text: #ffffff;
-    --text-dim: rgba(255, 255, 255, 0.6);
+    --primary: #5c4b41; /* Marró fosc del local */
+    --accent: #d4a373;  /* Ocre/Daurat suau */
+    --bg: #fdfaf7;      /* Blanc trencat rústic */
+    --sidebar-bg: #4a3d35;
+    --text: #2d241f;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; }
 
-/* FONS DINÀMIC BECO */
-.bg-aura {
+/* 📱 RESPONSIVE LAYOUT */
+@media (max-width: 768px) {
+    body { flex-direction: column; }
+    .sidebar { width: 100% !important; height: auto !important; position: sticky !important; top: 0; z-index: 100; padding: 10px !important; }
+    .sidebar nav { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 5px; }
+    .sidebar nav a { white-space: nowrap; font-size: 0.7rem !important; padding: 8px 12px !important; }
+    .main-content { padding: 20px !important; }
+    .hero h1 { font-size: 2rem !important; }
+}
+
+/* 🏰 SIDEBAR (MENÚ LATERAL) */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: var(--sidebar-bg);
+    color: white;
     position: fixed;
-    width: 100%; height: 100%;
-    z-index: -1;
-    background: radial-gradient(circle at 10% 10%, rgba(0, 162, 255, 0.15), transparent 40%),
-                radial-gradient(circle at 90% 90%, rgba(0, 119, 255, 0.1), transparent 40%);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.container { max-width: 500px; margin: auto; padding: 40px 20px; }
+.sidebar h2 { font-size: 1.2rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; }
 
-/* HEADER */
-header { text-align: center; margin-bottom: 40px; }
-h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; color: var(--accent); }
-.status { font-size: 0.8rem; color: #4ade80; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
-
-/* BOTONS RÀPIDS */
-.quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
-.btn-action { 
-    padding: 15px; border-radius: 12px; background: var(--glass); 
-    border: 1px solid var(--border); color: white; text-decoration: none;
-    text-align: center; font-size: 0.9rem; font-weight: 600; transition: 0.3s;
+.sidebar nav a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
 }
-.btn-action:hover { background: rgba(0, 162, 255, 0.1); border-color: var(--accent); }
+
+.sidebar nav a:hover { color: var(--accent); padding-left: 5px; }
+
+/* 🍽️ CONTINGUT PRINCIPAL */
+.main-content {
+    flex: 1;
+    margin-left: 250px; /* Espai per la sidebar */
+    padding: 60px;
+}
+
+@media (max-width: 768px) { .main-content { margin-left: 0; } }
+
+.hero { text-align: center; margin-bottom: 80px; }
+.hero h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; color: var(--primary); }
+.hero p { font-size: 1.1rem; color: var(--primary); opacity: 0.8; margin-top: 10px; }
 
 /* SECCIONS CARTA */
-.category { margin-bottom: 30px; }
-.category-title { 
-    font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; 
-    color: var(--text-dim); margin-bottom: 15px; border-left: 3px solid var(--accent); padding-left: 10px;
+section { margin-bottom: 60px; scroll-margin-top: 100px; }
+h2.section-title { 
+    font-size: 1.5rem; 
+    text-transform: uppercase; 
+    border-bottom: 2px solid var(--accent); 
+    padding-bottom: 10px; 
+    margin-bottom: 30px;
+    color: var(--primary);
 }
 
-.item { 
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 15px; background: var(--glass); border: 1px solid var(--border);
-    border-radius: 12px; margin-bottom: 10px; backdrop-filter: blur(10px);
-}
-.item-info h3 { font-size: 1rem; font-weight: 600; }
-.item-info p { font-size: 0.8rem; color: var(--text-dim); }
-.price { font-weight: 800; color: var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
-/* FOOTER */
-footer { text-align: center; margin-top: 50px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; }
-.beco-tag { color: var(--accent); font-weight: 700; text-decoration: none; }
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+}
+
+.card:hover { border-left-color: var(--accent); transform: translateY(-2px); }
+.card h3 { font-size: 0.95rem; font-weight: 600; text-transform: uppercase; }
+.card .price { font-weight: 800; color: var(--primary); }
+
+.info-box { background: var(--primary); color: white; padding: 30px; border-radius: 12px; margin-top: 40px; }
+.info-box h3 { color: var(--accent); margin-bottom: 15px; text-transform: uppercase; }
+.info-box p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 5px; }
+
+footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.8rem; text-align: center; color: #888; }
 </style>
 </head>
 <body>
 
-<div class="bg-aura"></div>
+<aside class="sidebar">
+    <h2>EL CASAL</h2>
+    <nav>
+        <a href="#horari">Horari</a>
+        <a href="#cafes">Cafès</a>
+        <a href="#cerveses">Cerveses</a>
+        <a href="#entrepans">Entrepans</a>
+        <a href="#tapes">Tapes</a>
+        <a href="#infusions">Infusions</a>
+        <a href="#vins">Vins</a>
+    </nav>
+</aside>
 
-<div class="container">
-    <header>
-        <h1>EL CASAL</h1>
-        <div class="status">● Obert ara</div>
-        <p style="color: var(--text-dim); margin-top: 10px;">Moià · Des de 1920</p>
-    </header>
-
-    <div class="quick-actions">
-        <a href="tel:938300302" class="btn-action">📞 TRUCAR</a>
-        <a href="https://maps.google.com/?q=Sant+Antoni+14+Moia" class="btn-action">📍 ARRIBAR</a>
+<main class="main-content">
+    <div class="hero">
+        <p>PER FER UN CAFÈ, UN REFRESC, UN ENTREPÀ...!</p>
+        <h1>EL CASAL DE MOIÀ</h1>
     </div>
 
-    <div class="category">
-        <div class="category-title">ENTREPANS CALENTS</div>
-        <div class="item">
-            <div class="item-info">
-                <h3>Frankfurt XXL</h3>
-                <p>El clàssic de la casa (180g)</p>
-            </div>
-            <div class="price">6,00€</div>
+    <section id="horari">
+        <h2 class="section-title">Horari</h2>
+        <div class="info-box">
+            <p><strong>Dl, Dt i Dm:</strong> 8:00h a 23:00h</p>
+            <p><strong>Dv i Ds:</strong> 8:00h a 24:00h</p>
+            <p style="color: var(--accent);"><strong>Dimecres i dijous tancat.</strong></p>
+            <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.8;">Cuina tancada de 15:30h a 18:00h i una hora abans del tancament.</p>
         </div>
-        <div class="item">
-            <div class="item-info">
-                <h3>Hamburguesa Heura</h3>
-                <p>Opció 100% vegetal</p>
-            </div>
-            <div class="price">5,70€</div>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <h3>Llom amb formatge</h3>
-                <p>Cruixent i sucós</p>
-            </div>
-            <div class="price">4,70€</div>
-        </div>
-    </div>
+    </section>
 
-    <div class="category">
-        <div class="category-title">TAPES SELECCIÓ</div>
-        <div class="item">
-            <div class="item-info">
-                <h3>Patates Braves</h3>
-                <p>Amb salsa casolana secreta</p>
-            </div>
-            <div class="price">3,50€</div>
+    <section id="cafes">
+        <h2 class="section-title">Cafès</h2>
+        <div class="grid">
+            <div class="card"><h3>Cafè</h3><span class="price">1,60€</span></div>
+            <div class="card"><h3>Tallat</h3><span class="price">1,70€</span></div>
+            <div class="card"><h3>Cafè amb llet</h3><span class="price">1,90€</span></div>
+            <div class="card"><h3>Cappuccino</h3><span class="price">2,50€</span></div>
+            <div class="card"><h3>Xocolata desfeta</h3><span class="price">3,00€</span></div>
         </div>
-        <div class="item">
-            <div class="item-info">
-                <h3>Croquetes Variades</h3>
-                <p>Pollastre, pernil i bolets (6u)</p>
-            </div>
-            <div class="price">6,20€</div>
-        </div>
-    </div>
+    </section>
 
-    <div class="category">
-        <div class="category-title">HORARI</div>
-        <div class="item" style="display: block; text-align: center;">
-            <p style="font-size: 0.9rem;">Diumenge - Dimarts: 8:00h a 23:00h</p>
-            <p style="font-size: 0.9rem;">Divendres - Dissabte: 8:00h a 24:00h</p>
-            <p style="color: #ff4a4a; font-size: 0.8rem; margin-top: 5px;">Dimecres i Dijous tancat</p>
+    <section id="entrepans">
+        <h2 class="section-title">Entrepans Calents</h2>
+        <div class="grid">
+            <div class="card"><h3>Frankfurt XXL (180g)</h3><span class="price">6,00€</span></div>
+            <div class="card"><h3>Hamburguesa</h3><span class="price">4,70€</span></div>
+            <div class="card"><h3>Llom</h3><span class="price">4,20€</span></div>
+            <div class="card"><h3>Bacon</h3><span class="price">4,20€</span></div>
+            <div class="card"><h3>Hamburguesa Heura</h3><span class="price">5,70€</span></div>
         </div>
-    </div>
+        <h2 class="section-title" style="margin-top:40px;">Freds</h2>
+        <div class="grid">
+            <div class="card"><h3>Pernil Salat</h3><span class="price">4,20€</span></div>
+            <div class="card"><h3>Llonganissa</h3><span class="price">3,70€</span></div>
+            <div class="card"><h3>Tonyina</h3><span class="price">3,70€</span></div>
+        </div>
+    </section>
+
+    <section id="tapes">
+        <h2 class="section-title">Tapes</h2>
+        <div class="grid">
+            <div class="card"><h3>Patates Braves</h3><span class="price">3,50€</span></div>
+            <div class="card"><h3>Croquetes Pollastre (5u)</h3><span class="price">5,00€</span></div>
+            <div class="card"><h3>Calamars Romana</h3><span class="price">5,70€</span></div>
+            <div class="card"><h3>Aletes de pollastre</h3><span class="price">6,00€</span></div>
+        </div>
+    </section>
 
     <footer>
-        DISSENY BY <a href="#" class="beco-tag">BECO STUDIO</a><br>
-        © 2026 EL CASAL DE MOIÀ
+        <p>938 30 03 02 | elcasalcafe@yahoo.es</p>
+        <p>Sant Antoni, 14 · Moià</p>
+        <p style="margin-top: 10px; font-weight: 800;">DISSENY BY BECO STUDIO</p>
     </footer>
-</div>
+</main>
 
 </body>
 </html>
