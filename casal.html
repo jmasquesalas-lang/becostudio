@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL CASAL DE MOIÀ | BY BECO STUDIO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #05070a;
+    --accent: #00a2ff;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.6);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* FONS DINÀMIC BECO */
+.bg-aura {
+    position: fixed;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 10% 10%, rgba(0, 162, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(0, 119, 255, 0.1), transparent 40%);
+}
+
+.container { max-width: 500px; margin: auto; padding: 40px 20px; }
+
+/* HEADER */
+header { text-align: center; margin-bottom: 40px; }
+h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; color: var(--accent); }
+.status { font-size: 0.8rem; color: #4ade80; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+
+/* BOTONS RÀPIDS */
+.quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
+.btn-action { 
+    padding: 15px; border-radius: 12px; background: var(--glass); 
+    border: 1px solid var(--border); color: white; text-decoration: none;
+    text-align: center; font-size: 0.9rem; font-weight: 600; transition: 0.3s;
+}
+.btn-action:hover { background: rgba(0, 162, 255, 0.1); border-color: var(--accent); }
+
+/* SECCIONS CARTA */
+.category { margin-bottom: 30px; }
+.category-title { 
+    font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; 
+    color: var(--text-dim); margin-bottom: 15px; border-left: 3px solid var(--accent); padding-left: 10px;
+}
+
+.item { 
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px; background: var(--glass); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 10px; backdrop-filter: blur(10px);
+}
+.item-info h3 { font-size: 1rem; font-weight: 600; }
+.item-info p { font-size: 0.8rem; color: var(--text-dim); }
+.price { font-weight: 800; color: var(--accent); }
+
+/* FOOTER */
+footer { text-align: center; margin-top: 50px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; }
+.beco-tag { color: var(--accent); font-weight: 700; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="bg-aura"></div>
+
+<div class="container">
+    <header>
+        <h1>EL CASAL</h1>
+        <div class="status">● Obert ara</div>
+        <p style="color: var(--text-dim); margin-top: 10px;">Moià · Des de 1920</p>
+    </header>
+
+    <div class="quick-actions">
+        <a href="tel:938300302" class="btn-action">📞 TRUCAR</a>
+        <a href="https://maps.google.com/?q=Sant+Antoni+14+Moia" class="btn-action">📍 ARRIBAR</a>
+    </div>
+
+    <div class="category">
+        <div class="category-title">ENTREPANS CALENTS</div>
+        <div class="item">
+            <div class="item-info">
+                <h3>Frankfurt XXL</h3>
+                <p>El clàssic de la casa (180g)</p>
+            </div>
+            <div class="price">6,00€</div>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <h3>Hamburguesa Heura</h3>
+                <p>Opció 100% vegetal</p>
+            </div>
+            <div class="price">5,70€</div>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <h3>Llom amb formatge</h3>
+                <p>Cruixent i sucós</p>
+            </div>
+            <div class="price">4,70€</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-title">TAPES SELECCIÓ</div>
+        <div class="item">
+            <div class="item-info">
+                <h3>Patates Braves</h3>
+                <p>Amb salsa casolana secreta</p>
+            </div>
+            <div class="price">3,50€</div>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <h3>Croquetes Variades</h3>
+                <p>Pollastre, pernil i bolets (6u)</p>
+            </div>
+            <div class="price">6,20€</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-title">HORARI</div>
+        <div class="item" style="display: block; text-align: center;">
+            <p style="font-size: 0.9rem;">Diumenge - Dimarts: 8:00h a 23:00h</p>
+            <p style="font-size: 0.9rem;">Divendres - Dissabte: 8:00h a 24:00h</p>
+            <p style="color: #ff4a4a; font-size: 0.8rem; margin-top: 5px;">Dimecres i Dijous tancat</p>
+        </div>
+    </div>
+
+    <footer>
+        DISSENY BY <a href="#" class="beco-tag">BECO STUDIO</a><br>
+        © 2026 EL CASAL DE MOIÀ
+    </footer>
+</div>
+
+</body>
+</html>
