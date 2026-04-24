@@ -20,11 +20,12 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 /* 📱 RESPONSIVE LAYOUT */
 @media (max-width: 768px) {
     body { flex-direction: column; }
-    .sidebar { width: 100% !important; height: auto !important; position: sticky !important; top: 0; z-index: 100; padding: 10px !important; }
+    .sidebar { width: 100% !important; height: auto !important; position: sticky !important; top: 0; z-index: 100; padding: 10px !important; border-radius: 0 !important;}
     .sidebar nav { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 5px; }
     .sidebar nav a { white-space: nowrap; font-size: 0.7rem !important; padding: 8px 12px !important; }
     .main-content { padding: 20px !important; }
     .hero h1 { font-size: 2rem !important; }
+    .beco-logo { width: 60px !important; height: 60px !important; margin: 0 auto 10px auto; }
 }
 
 /* 🏰 SIDEBAR (MENÚ LATERAL) */
@@ -38,9 +39,23 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
     display: flex;
     flex-direction: column;
     gap: 20px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
-.sidebar h2 { font-size: 1.2rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; }
+/* LOGO MILLORAT A SIDEBAR */
+.beco-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px auto;
+    border: 3px solid var(--accent);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.beco-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.sidebar h2 { font-size: 1rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; text-align: center; }
 
 .sidebar nav a {
     color: rgba(255,255,255,0.7);
@@ -64,9 +79,49 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 
 @media (max-width: 768px) { .main-content { margin-left: 0; } }
 
-.hero { text-align: center; margin-bottom: 80px; }
-.hero h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; color: var(--primary); }
-.hero p { font-size: 1.1rem; color: var(--primary); opacity: 0.8; margin-top: 10px; }
+.hero { text-align: center; margin-bottom: 60px; }
+.hero h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; color: var(--primary); margin-bottom: 10px;}
+.hero p { font-size: 1.1rem; color: var(--primary); opacity: 0.8; }
+
+/* 🎡 SLIDER (CAROUSEL) SOTA TÍTOL */
+.slider-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.slider-wrapper {
+    display: flex;
+    animation: slideLoop 15s infinite ease-in-out;
+}
+
+.slider-wrapper img {
+    width: 100%;
+    flex-shrink: 0;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* ANIMACIÓ SLIDER PER A 3 FOTOS */
+@keyframes slideLoop {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(0); } /* Foto 1 */
+    33% { transform: translateX(-100%); }
+    63% { transform: translateX(-100%); } /* Foto 2 */
+    66% { transform: translateX(-200%); }
+    96% { transform: translateX(-200%); } /* Foto 3 */
+    100% { transform: translateX(0); }
+}
+
+/* Ajust per a mòbils del slider */
+@media (max-width: 768px) {
+    .slider-wrapper img { height: 250px; }
+    .slider-container { margin-bottom: 40px; }
+}
 
 /* SECCIONS CARTA */
 section { margin-bottom: 60px; scroll-margin-top: 100px; }
@@ -107,7 +162,10 @@ footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #ddd; font-
 <body>
 
 <aside class="sidebar">
-    <h2>EL CASAL</h2>
+    <div class="beco-logo">
+        <img src="https://i.imgur.com/83uA6pM.png" alt="Logo El Casal de Moià">
+    </div>
+    <h2>CARTA DIGITAL</h2>
     <nav>
         <a href="#horari">Horari</a>
         <a href="#cafes">Cafès</a>
@@ -121,8 +179,16 @@ footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #ddd; font-
 
 <main class="main-content">
     <div class="hero">
-        <p>PER FER UN CAFÈ, UN REFRESC, UN ENTREPÀ...!</p>
         <h1>EL CASAL DE MOIÀ</h1>
+        <p>PER FER UN CAFÈ, UN REFRESC, UN ENTREPÀ...!</p>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider-wrapper">
+            <img src="https://i.imgur.com/W2oE55S.jpg" alt="Interior El Casal">
+            <img src="https://i.imgur.com/K8G2uG6.jpg" alt="Hamburguesa XXL">
+            <img src="https://i.imgur.com/F7U8wUe.jpg" alt="Plat de Tapes">
+        </div>
     </div>
 
     <section id="horari">
@@ -160,16 +226,6 @@ footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #ddd; font-
             <div class="card"><h3>Pernil Salat</h3><span class="price">4,20€</span></div>
             <div class="card"><h3>Llonganissa</h3><span class="price">3,70€</span></div>
             <div class="card"><h3>Tonyina</h3><span class="price">3,70€</span></div>
-        </div>
-    </section>
-
-    <section id="tapes">
-        <h2 class="section-title">Tapes</h2>
-        <div class="grid">
-            <div class="card"><h3>Patates Braves</h3><span class="price">3,50€</span></div>
-            <div class="card"><h3>Croquetes Pollastre (5u)</h3><span class="price">5,00€</span></div>
-            <div class="card"><h3>Calamars Romana</h3><span class="price">5,70€</span></div>
-            <div class="card"><h3>Aletes de pollastre</h3><span class="price">6,00€</span></div>
         </div>
     </section>
 
