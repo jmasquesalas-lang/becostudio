@@ -11,18 +11,13 @@
 :root {
     --bg: #020307;
     --accent: #00a2ff;
-    --accent-strong: #0077ff;
+    --accent-glow: rgba(0, 162, 255, 0.15);
     --text-main: #ffffff;
     --text-muted: rgba(255,255,255,0.6);
     --border: rgba(255,255,255,0.08);
 }
 
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -32,8 +27,8 @@ body {
     min-height: 100vh;
 }
 
-/* 🔵 FONS NEÓ DINÀMIC (DUES AURES) */
-.background-blobs {
+/* 🔵 FONS DE 10 BOLES DINÀMIQUES */
+.background-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -41,37 +36,34 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    filter: blur(60px); /* Difumina les boles per crear l'efecte aura */
 }
 
 .blob {
     position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(0, 162, 255, 0.25) 0%, transparent 70%);
-    filter: blur(80px);
+    background: var(--accent);
+    opacity: 0.2;
     border-radius: 50%;
-    animation: move 20s infinite alternate ease-in-out;
+    animation: move-irregular infinite alternate ease-in-out;
 }
 
-.blob-1 {
-    top: -100px;
-    left: -100px;
-    background: radial-gradient(circle, rgba(0, 119, 255, 0.3) 0%, transparent 70%);
-}
+/* Definim mides i trajectòries diferents per a cada bola */
+.blob:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 10%; animation-duration: 15s; }
+.blob:nth-child(2) { width: 400px; height: 400px; top: 60%; left: 80%; animation-duration: 20s; animation-delay: -2s; }
+.blob:nth-child(3) { width: 250px; height: 250px; top: 40%; left: 30%; animation-duration: 18s; animation-delay: -5s; }
+.blob:nth-child(4) { width: 350px; height: 350px; top: 80%; left: 10%; animation-duration: 22s; }
+.blob:nth-child(5) { width: 200px; height: 200px; top: 20%; left: 70%; animation-duration: 14s; animation-delay: -7s; }
+.blob:nth-child(6) { width: 450px; height: 450px; top: 50%; left: 50%; animation-duration: 25s; }
+.blob:nth-child(7) { width: 280px; height: 280px; top: 5%; left: 90%; animation-duration: 17s; }
+.blob:nth-child(8) { width: 320px; height: 320px; top: 75%; left: 40%; animation-duration: 19s; animation-delay: -3s; }
+.blob:nth-child(9) { width: 220px; height: 220px; top: 30%; left: 15%; animation-duration: 16s; }
+.blob:nth-child(10) { width: 380px; height: 380px; top: 85%; left: 65%; animation-duration: 21s; animation-delay: -1s; }
 
-.blob-2 {
-    bottom: -150px;
-    right: -100px;
-    animation-duration: 25s;
-    animation-delay: -5s;
-    background: radial-gradient(circle, rgba(0, 162, 255, 0.2) 0%, transparent 70%);
-}
-
-@keyframes move {
+@keyframes move-irregular {
     0% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30vw, 20vh) scale(1.2); }
-    66% { transform: translate(10vw, 50vh) scale(0.8); }
-    100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, 50px) scale(1.1); }
+    66% { transform: translate(-50px, 150px) scale(0.9); }
+    100% { transform: translate(40px, -80px) scale(1.05); }
 }
 
 /* LAYOUT */
@@ -84,25 +76,23 @@ body {
     z-index: 1;
 }
 
-/* HERO */
 h1 {
     font-size: 3.5rem;
     font-weight: 800;
     letter-spacing: -1px;
     text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
 .pitch {
-    margin-top: 20px;
     font-size: 1.2rem;
     color: var(--text-muted);
     max-width: 600px;
     margin-inline: auto;
+    margin-bottom: 40px;
 }
 
-/* CTA */
 .cta-main {
-    margin-top: 40px;
     display: inline-block;
     padding: 16px 40px;
     border-radius: 50px;
@@ -121,11 +111,7 @@ h1 {
     box-shadow: 0 0 35px rgba(0,119,255,0.7);
 }
 
-/* SECCIÓ SERVEIS */
-.services {
-    margin-top: 80px;
-    text-align: left;
-}
+.services { margin-top: 80px; text-align: left; }
 
 .section-title {
     font-size: 0.9rem;
@@ -135,7 +121,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* CARDS */
 .card {
     display: flex;
     gap: 15px;
@@ -144,7 +129,7 @@ h1 {
     margin-bottom: 16px;
     background: rgba(255,255,255,0.02);
     border: 1px solid var(--border);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     transition: 0.3s;
 }
 
@@ -152,12 +137,9 @@ h1 {
     transform: translateX(6px);
     border-color: var(--accent);
     background: rgba(0,119,255,0.05);
-    box-shadow: 0 0 25px rgba(0,119,255,0.15);
 }
 
-.card-icon {
-    font-size: 1.4rem;
-}
+.card-icon { font-size: 1.4rem; }
 
 .card-content h3 {
     font-size: 1.1rem;
@@ -170,7 +152,6 @@ h1 {
     color: var(--text-muted);
 }
 
-/* FOOTER */
 footer {
     margin-top: 80px;
     font-size: 0.75rem;
@@ -180,7 +161,6 @@ footer {
     opacity: 0.5;
 }
 
-/* RESPONSIVE */
 @media (max-width: 600px) {
     h1 { font-size: 2.5rem; }
     .card { flex-direction: column; }
@@ -190,13 +170,20 @@ footer {
 
 <body>
 
-<div class="background-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+<div class="background-container">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
 </div>
 
 <div class="container">
-
     <h1>CONNECTA EL TEU LOCAL AL MÓN</h1>
 
     <p class="pitch">
@@ -207,7 +194,6 @@ footer {
 
     <div class="services">
         <div class="section-title">SERVEIS</div>
-
         <div class="card">
             <div class="card-icon">📱</div>
             <div class="card-content">
@@ -239,11 +225,9 @@ footer {
                 <p>Llança la teva botiga online i escala vendes amb nosaltres.</p>
             </div>
         </div>
-
     </div>
 
     <footer>© 2026 BECO STUDIO</footer>
-
 </div>
 
 </body>
