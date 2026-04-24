@@ -20,146 +20,81 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 /* 📱 RESPONSIVE (MÒBIL) */
 @media (max-width: 768px) {
     body { flex-direction: column; }
-    
-    /* SIDEBAR QUE ES FA PETITA */
     .sidebar { 
-        width: 100% !important; 
-        height: auto !important; 
-        position: sticky !important; 
-        top: 0; 
-        z-index: 100; 
-        padding: 10px !important; 
-        flex-direction: row !important; /* Logo i menú en línia */
-        align-items: center;
-        gap: 15px !important;
-        transition: all 0.3s ease;
+        width: 100% !important; height: auto !important; position: sticky !important; top: 0; 
+        z-index: 100; padding: 10px !important; flex-direction: row !important; 
+        align-items: center; gap: 10px !important; transition: all 0.3s ease;
     }
-
-    .beco-logo { 
-        width: 50px !important; 
-        height: 50px !important; 
-        margin: 0 !important; 
-        transition: 0.3s;
-    }
-
-    .sidebar h2 { display: none; } /* Amaguem el text "Carta Digital" al mòbil */
-
-    .sidebar nav { 
-        display: flex; 
-        overflow-x: auto; 
-        gap: 10px; 
-        flex: 1;
-    }
-
+    .beco-logo { width: 45px !important; height: 45px !important; margin: 0 !important; }
+    .sidebar h2 { display: none; }
+    .sidebar nav { display: flex; overflow-x: auto; gap: 8px; flex: 1; padding-right: 10px; }
     .sidebar nav a { 
-        white-space: nowrap; 
-        font-size: 0.7rem !important; 
-        padding: 8px 12px !important; 
-        border-bottom: none !important;
-        background: rgba(255,255,255,0.1);
-        border-radius: 20px;
+        white-space: nowrap; font-size: 0.65rem !important; padding: 6px 10px !important; 
+        border-bottom: none !important; background: rgba(255,255,255,0.1); border-radius: 15px; 
     }
-
-    /* Quan fem scroll, fem el logo encara més petit si cal */
-    .sidebar.collapsed { padding: 5px 10px !important; }
-    .sidebar.collapsed .beco-logo { width: 35px !important; height: 35px !important; }
-
-    .main-content { padding: 20px !important; margin-left: 0 !important; }
-    .hero h1 { font-size: 2rem !important; }
+    .main-content { padding: 15px !important; margin-left: 0 !important; }
+    .hero h1 { font-size: 2.2rem !important; }
+    .slider-wrapper img { height: 220px !important; }
 }
 
 /* 🏰 SIDEBAR DESKTOP */
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background: var(--sidebar-bg);
-    color: white;
-    position: fixed;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.beco-logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 10px auto;
-    border: 2px solid var(--accent);
-}
+.sidebar { width: 250px; height: 100vh; background: var(--sidebar-bg); color: white; position: fixed; padding: 40px 20px; display: flex; flex-direction: column; gap: 15px; }
+.beco-logo { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px auto; border: 2px solid var(--accent); }
 .beco-logo img { width: 100%; height: 100%; object-fit: cover; }
-
-.sidebar h2 { font-size: 0.9rem; letter-spacing: 2px; color: var(--accent); text-align: center; }
-
-.sidebar nav a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+.sidebar h2 { font-size: 0.8rem; letter-spacing: 2px; color: var(--accent); text-align: center; margin-bottom: 10px; }
+.sidebar nav { display: flex; flex-direction: column; }
+.sidebar nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
 /* 🍽️ CONTINGUT */
-.main-content { flex: 1; margin-left: 250px; padding: 60px; }
+.main-content { flex: 1; margin-left: 250px; padding: 50px; }
+.hero { text-align: center; margin-bottom: 30px; }
+.hero h1 { font-size: 3.5rem; font-weight: 800; color: var(--primary); }
+.hero p { color: var(--primary); opacity: 0.7; font-style: italic; }
 
-.hero { text-align: center; margin-bottom: 40px; padding-top: 20px; }
-.hero h1 { font-size: 3.2rem; font-weight: 800; color: var(--primary); }
+.slider-container { width: 100%; max-width: 900px; margin: 0 auto 40px auto; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.slider-wrapper { display: flex; animation: slideLoop 12s infinite ease-in-out; }
+.slider-wrapper img { width: 100%; height: 400px; object-fit: cover; flex-shrink: 0; }
 
-.slider-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    overflow: hidden;
-    border-radius: 12px;
+@keyframes slideLoop { 
+    0%, 25% { transform: translateX(0); } 
+    33%, 58% { transform: translateX(-100%); } 
+    66%, 91% { transform: translateX(-200%); } 
+    100% { transform: translateX(0); } 
 }
-.slider-wrapper { display: flex; animation: slideLoop 15s infinite ease-in-out; }
-.slider-wrapper img { width: 100%; height: 350px; object-fit: cover; }
-
-@keyframes slideLoop {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(0); }
-    33% { transform: translateX(-100%); }
-    63% { transform: translateX(-100%); }
-    66% { transform: translateX(-200%); }
-    96% { transform: translateX(-200%); }
-    100% { transform: translateX(0); }
-}
-
-@media (max-width: 768px) { .slider-wrapper img { height: 200px; } }
 
 /* CARTA */
-section { margin-bottom: 40px; scroll-margin-top: 80px; }
-h2.section-title { font-size: 1.3rem; text-transform: uppercase; border-bottom: 2px solid var(--accent); margin-bottom: 20px; color: var(--primary); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
-.card { background: white; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+section { margin-bottom: 50px; scroll-margin-top: 80px; }
+h2.section-title { font-size: 1.4rem; text-transform: uppercase; border-bottom: 2px solid var(--accent); margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.card { background: white; padding: 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-right: 3px solid transparent; transition: 0.3s; }
+.card:hover { border-right-color: var(--accent); }
+.card h3 { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
 .card .price { font-weight: 800; color: var(--primary); }
+.note { font-size: 0.7rem; color: #888; margin-top: 10px; font-style: italic; }
 
-footer { padding: 40px 0; text-align: center; font-size: 0.8rem; color: #888; }
+footer { padding: 50px 0; text-align: center; font-size: 0.8rem; color: #aaa; border-top: 1px solid #eee; }
 </style>
 </head>
 <body>
 
 <aside class="sidebar" id="mySidebar">
-    <div class="beco-logo">
-        <img src="logo-img.jpg" alt="logo casal">
-    </div>
+    <div class="beco-logo"><img src="logo-img.jpg" alt="logo"></div>
     <h2>CARTA DIGITAL</h2>
     <nav>
         <a href="#horari">Horari</a>
         <a href="#cafes">Cafès</a>
+        <a href="#cerveses">Cerveses</a>
         <a href="#entrepans">Entrepans</a>
         <a href="#tapes">Tapes</a>
+        <a href="#vins">Vins</a>
+        <a href="#gelats">Gelats</a>
     </nav>
 </aside>
 
 <main class="main-content">
     <div class="hero">
         <h1>EL CASAL DE MOIÀ</h1>
-        <p>PER FER UN CAFÈ, UN REFRESC, UN ENTREPÀ...!</p>
+        <p>Cafè · Bar · Cuina de mercat</p>
     </div>
 
     <div class="slider-container">
@@ -171,44 +106,99 @@ footer { padding: 40px 0; text-align: center; font-size: 0.8rem; color: #888; }
     </div>
 
     <section id="horari">
-        <h2 class="section-title">Horari</h2>
-        <div style="background: var(--primary); color: white; padding: 20px; border-radius: 12px;">
-            <p><strong>Dilluns a Dimarts:</strong> 8:00h - 23:00h</p>
-            <p><strong>Divendres a Dissabte:</strong> 8:00h - 24:00h</p>
-            <p style="color: var(--accent);">Dimecres i dijous tancat.</p>
+        <h2 class="section-title">🕒 Horari</h2>
+        <div style="background: var(--primary); color: white; padding: 25px; border-radius: 15px; line-height: 1.6;">
+            <p><strong>Diumenge, dilluns i dimarts:</strong> 8:00h a 23:00h</p>
+            <p><strong>Divendres i dissabte:</strong> 8:00h a 24:00h</p>
+            <p style="color: var(--accent); font-weight: 800;">Dimecres i dijous tancat.</p>
+            <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 10px;">Cuina tancada de 15:30h a 18:00h</p>
         </div>
     </section>
 
     <section id="cafes">
-        <h2 class="section-title">Cafès i Te</h2>
+        <h2 class="section-title">☕ Cafès i Infusions</h2>
         <div class="grid">
-            <div class="card"><h3>Cafè</h3><span class="price">1,60€</span></div>
+            <div class="card"><h3>Cafè / Americà</h3><span class="price">1,60€ / 1,70€</span></div>
             <div class="card"><h3>Tallat</h3><span class="price">1,70€</span></div>
             <div class="card"><h3>Cafè amb llet</h3><span class="price">1,90€</span></div>
+            <div class="card"><h3>Cappuccino</h3><span class="price">2,50€</span></div>
+            <div class="card"><h3>Xocolata desfeta</h3><span class="price">3,00€</span></div>
+            <div class="card"><h3>Infusions i Tes</h3><span class="price">1,90€</span></div>
+        </div>
+    </section>
+
+    <section id="cerveses">
+        <h2 class="section-title">🍺 Cerveses</h2>
+        <div class="grid">
+            <div class="card"><h3>Estrella Damm (Mitjana)</h3><span class="price">2,40€</span></div>
+            <div class="card"><h3>Voll Damm</h3><span class="price">2,60€</span></div>
+            <div class="card"><h3>Canya Estrella (25cl)</h3><span class="price">1,80€</span></div>
+            <div class="card"><h3>Copa Turia (33cl)</h3><span class="price">2,70€</span></div>
+            <div class="card"><h3>Daura (Sense Gluten)</h3><span class="price">3,00€</span></div>
+            <div class="card"><h3>Free Damm (0,0%)</h3><span class="price">2,60€</span></div>
         </div>
     </section>
 
     <section id="entrepans">
-        <h2 class="section-title">Entrepans</h2>
+        <h2 class="section-title">🥪 Entrepans</h2>
         <div class="grid">
             <div class="card"><h3>Frankfurt XXL</h3><span class="price">6,00€</span></div>
             <div class="card"><h3>Hamburguesa</h3><span class="price">4,70€</span></div>
+            <div class="card"><h3>Llom / Bacon / Salsitxes</h3><span class="price">4,20€</span></div>
+            <div class="card"><h3>Pernil Salat</h3><span class="price">4,20€</span></div>
+            <div class="card"><h3>Biquini</h3><span class="price">2,80€</span></div>
+            <div class="card"><h3>Hamburguesa Heura (V)</h3><span class="price">5,70€</span></div>
+        </div>
+    </section>
+
+    <section id="tapes">
+        <h2 class="section-title">🥘 Tapes i Picapica</h2>
+        <div class="grid">
+            <div class="card"><h3>Patates Braves</h3><span class="price">3,50€</span></div>
+            <div class="card"><h3>Croquetes (Pollastre/Pernil/Bolets)</h3><span class="price">5,00€</span></div>
+            <div class="card"><h3>Calamars a la Romana</h3><span class="price">5,70€</span></div>
+            <div class="card"><h3>Aletes de Pollastre</h3><span class="price">6,00€</span></div>
+            <div class="card"><h3>Olives Farcides</h3><span class="price">2,20€</span></div>
+            <div class="card"><h3>Variat de la casa</h3><span class="price">9,00€</span></div>
+        </div>
+    </section>
+
+    <section id="vins">
+        <h2 class="section-title">🍷 Vins i Cava</h2>
+        <div class="grid">
+            <div class="card"><h3>Vi de la casa (Copa)</h3><span class="price">1,50€</span></div>
+            <div class="card"><h3>Vi Caprici (D.O. Bages)</h3><span class="price">3,50€</span></div>
+            <div class="card"><h3>Coto (Rioja)</h3><span class="price">3,00€</span></div>
+            <div class="card"><h3>Pata Negra (Verdejo)</h3><span class="price">2,00€</span></div>
+            <div class="card"><h3>Cava Brut (Copa)</h3><span class="price">3,00€</span></div>
+        </div>
+    </section>
+
+    <section id="gelats">
+        <h2 class="section-title">🍦 Postres i Gelats</h2>
+        <div class="grid">
+            <div class="card"><h3>Gelats Variats</h3><span class="price">3,00€</span></div>
+            <div class="card"><h3>Copa de Festucs</h3><span class="price">3,00€</span></div>
         </div>
     </section>
 
     <footer>
-        <p>938 30 03 02 | Moià</p>
-        <p style="margin-top: 10px; font-weight: 800;">DISSENY BY BECO STUDIO</p>
+        <p>📞 938 30 03 02 | 📍 Sant Antoni, 14, Moià</p>
+        <p style="margin-top: 15px; font-weight: 800; letter-spacing: 1px; color: #555;">DISSENY BY BECO STUDIO</p>
     </footer>
 </main>
 
 <script>
     window.onscroll = function() {
         const sidebar = document.getElementById('mySidebar');
-        if (window.scrollY > 50) {
-            sidebar.classList.add('collapsed');
-        } else {
-            sidebar.classList.remove('collapsed');
+        if (window.innerWidth <= 768) {
+            if (window.scrollY > 40) {
+                sidebar.style.padding = "5px 10px";
+                sidebar.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)";
+            } else {
+                sidebar.style.padding = "10px";
+                sidebar.style.boxShadow = "none";
+            }
         }
     };
 </script>
